@@ -19,8 +19,8 @@ jobs:
     docker:
       -image: cimg/python:3.11 
     steps:
-      -checkout
-      -run: Deploying successful
+      - checkout
+      - run: echo "Deploying Successful"
 workflows:
   build_and_test_deploy:
     jobs:
