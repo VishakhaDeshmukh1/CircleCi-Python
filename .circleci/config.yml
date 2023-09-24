@@ -34,7 +34,7 @@ workflows:
           filters:
             branches:
               only: main
-      -deploy:    
+      - deploy:    
           requires:
             - test   
           filters:
