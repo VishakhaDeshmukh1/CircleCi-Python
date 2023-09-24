@@ -2,29 +2,27 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.6.4
+      - image: cimg/python:3.11
     steps:
       - checkout
       - run: python main.py
 
   test:
-    working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.6.4
+      - image: cimg/python:3.11
     steps:
       - checkout
       - run: python Test.py 
+
   deploy:
-      working_directory: ~/circleci-python
     docker:
-      -image: circleci/python:3.6.4
+      -image: cimg/python:3.11 
     steps:
       -checkout
       -run: echo "Deploying Successful" 
 workflows:
-  build_and_test:
+  build_and_test_deploy:
     jobs:
       - build:
           filters:
@@ -36,7 +34,7 @@ workflows:
           filters:
             branches:
               only: main
-      -deploy
+      -deploy:    
           requires:
             - test   
           filters:
