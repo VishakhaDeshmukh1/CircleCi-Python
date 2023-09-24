@@ -7,16 +7,17 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - checkout
-      - run: python3 main.py
+      - run: python main.py
+
   test:
     working_directory: ~/circleci-python
     docker:
       - image: circleci/python:3.6.4
     steps:
       - checkout
-      - run: python test.py
+      - run: python Test.py 
   deploy:
-    working_directory:~/circleci-python
+      working_directory: ~/circleci-python
     docker:
       -image: circleci/python:3.6.4
     steps:
@@ -28,16 +29,16 @@ workflows:
       - build:
           filters:
             branches:
-            only: main
+              only: main
       - test:
           requires:
             - build
           filters:
-           branches:
-           only: main
+            branches:
+              only: main
       -deploy
           requires:
             - test   
           filters:
-           branches:
-           only: main   
+            branches:
+              only: main   
